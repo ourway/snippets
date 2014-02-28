@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,
+                                   initial-scale=1" />
+    <title>Word</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="profile">
+      <ul>
+          <li><span>Name:</span> Keyvan Hedayati</li>
+          <li><span>Date:</span> {{ date.split('.')[0] }}</li>
+      </ul>
+      <ul class="pull-right">
+          <li><span>Teacher:</span> Mr Rahmdel</li>
+          <li><span>Class:</span> Special English</li>
+      </ul>
+    </div>
+  {% for word in words %}
+    <div class="word">
+      <h2>{{ word.word }}</h2>
+      <span>{{ word.pron }}</span>
+      <hr/>
+      <div class="definitions">
+        <h3>Definition</h3>
+        <ol>
+        {% for definition in word.definitions %}
+          <li>{{ definition }}</li>
+        {% endfor %}
+        </ol>
+        <hr/>
+      </div>
+
+      <div class="synonyms">
+        <h3>Synonyms</h3>
+        <ul class="list-inline">
+        {% for synonym in word.synonyms %}
+          <li>{{ synonym }}</li>
+        {% endfor %}
+        </ul>
+        <hr/>
+      </div>
+      <div class="examples">
+        <h3>Examples</h3>
+        <ul>
+        {% for example in word.examples %}
+          <li>{{ example.replace(word.word, '<strong>{}</strong>'.format(word.word)) }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endfor %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
